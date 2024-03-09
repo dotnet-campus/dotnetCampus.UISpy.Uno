@@ -18,6 +18,9 @@
     -->
     <!-- <WindowsSdkPackageVersion>10.0.22621.28</WindowsSdkPackageVersion> -->
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Lib\UnoSpySnoopProvider\SpySnoop.cs" Link="SpySnoop.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Uno.WinUI" />

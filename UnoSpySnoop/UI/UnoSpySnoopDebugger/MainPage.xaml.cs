@@ -32,6 +32,10 @@ public sealed partial class MainPage : Page
         IpcProvider = jsonIpcDirectRoutedProvider;
 
         _ = RefreshProcessInfoList();
+
+#if HAS_UNO
+        UnoSpySnoop.SpySnoop.StartSpyUI(SnoopRootGrid);
+#endif
     }
 
     public ObservableCollection<CandidateDebugProcessInfo> ProcessInfoList { get; } =
@@ -43,43 +47,60 @@ public sealed partial class MainPage : Page
 
         var processes = Process.GetProcesses().ToList();
 
-        await Parallel.ForEachAsync(processes, async (process, _) =>
+#if DEBUG
+        var currentProcess = Process.GetCurrentProcess();
+        var otherInstance = processes.FirstOrDefault(p => p.Id != currentProcess.Id && p.ProcessName == currentProcess.ProcessName);
+        if (otherInstance != null)
         {
-            var peerName = $"UnoSpySnoop_{process.ProcessName}_{process.Id}";
+            processes.Remove(otherInstance);
+            processes.Insert(0, otherInstance);
+        }
 
-            try
+#if !MACCATALYST
+        Window.Current.Title = $"UnoSpySnoopDebugger - PID:{currentProcess.Id}";
+#endif
+
+#endif
+
+        await Parallel.ForEachAsync(processes, async (process, _) => { await PeekProcess(process); });
+    }
+
+    private async Task PeekProcess(Process process)
+    {
+        var peerName = $"UnoSpySnoop_{process.ProcessName}_{process.Id}";
+
+        try
+        {
+            JsonIpcDirectRoutedClientProxy client =
+                await IpcProvider.GetAndConnectClientAsync(peerName);
+            var response = await client.GetResponseAsync<HelloResponse>(RoutedPathList.Hello);
+            if (response is null)
             {
-                JsonIpcDirectRoutedClientProxy client =
-                    await IpcProvider.GetAndConnectClientAsync(peerName);
-                var response = await client.GetResponseAsync<HelloResponse>(RoutedPathList.Hello);
-                if (response is null)
-                {
-                    return;
-                }
-
-                if (response.SnoopVersionText != VersionInfo.VersionText)
-                {
-                    return;
-                }
-
-                var info = new CandidateDebugProcessInfo()
-                {
-                    Client = client,
-                    CommandLine = response.CommandLine,
-                    ProcessId = response.ProcessId.ToString(),
-                    ProcessName = response.ProcessName,
-                };
-
-                DispatcherQueue.TryEnqueue(() =>
-                {
-                    ProcessInfoList.Add(info);
-                });
+                return;
             }
-            catch (IpcClientPipeConnectionException e)
+
+            if (response.SnoopVersionText != VersionInfo.VersionText)
             {
-                // Connection Fail
+                return;
             }
-        });
+
+            var info = new CandidateDebugProcessInfo()
+            {
+                Client = client,
+                CommandLine = response.CommandLine,
+                ProcessId = response.ProcessId.ToString(),
+                ProcessName = response.ProcessName,
+            };
+
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                ProcessInfoList.Add(info);
+            });
+        }
+        catch (IpcClientPipeConnectionException e)
+        {
+            // Connection Fail
+        }
     }
 
     public JsonIpcDirectRoutedProvider IpcProvider { get; set; }
