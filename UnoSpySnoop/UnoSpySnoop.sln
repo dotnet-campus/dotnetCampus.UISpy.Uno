@@ -46,8 +46,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Action", "GitHub Action", "{302190EB-8221-45F7-9EBC-3B5DA8009B21}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\dotnet-core.yml = .github\workflows\dotnet-core.yml
-		.github\workflows\nuget-tag-publish.yml = .github\workflows\nuget-tag-publish.yml
+		..\.github\workflows\dotnet-core.yml = ..\.github\workflows\dotnet-core.yml
+		..\.github\workflows\nuget-tag-publish.yml = ..\.github\workflows\nuget-tag-publish.yml
 	EndProjectSection
 EndProject
 Global
