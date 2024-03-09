@@ -83,7 +83,7 @@ public class SpySnoop
     private HelloResponse HandleHello()
     {
         var currentProcess = Process.GetCurrentProcess();
-        
+
         return new HelloResponse(VersionInfo.VersionText, currentProcess.ProcessName, currentProcess.Id, Environment.CommandLine);
     }
 
@@ -180,6 +180,10 @@ public class SpySnoop
                 var rect = new Rect(0, 0, frameworkElement.ActualWidth, frameworkElement.ActualHeight);
                 Rect newRect = transformToVisual.TransformBounds(rect);
 
+                var strokeThickness = 2;
+                newRect.Width -= strokeThickness / 2d;
+                newRect.Height -= strokeThickness / 2d;
+
                 var rectangle = new Rectangle()
                 {
                     RenderTransform = new TranslateTransform()
@@ -192,7 +196,7 @@ public class SpySnoop
                     Height = newRect.Height,
 
                     Stroke = new SolidColorBrush(Colors.Red),
-                    StrokeThickness = 2,
+                    StrokeThickness = strokeThickness,
 
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
