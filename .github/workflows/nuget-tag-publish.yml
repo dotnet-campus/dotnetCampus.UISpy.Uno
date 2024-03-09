@@ -28,11 +28,6 @@ jobs:
     - name: Pack
       run: dotnet pack --configuration Release --no-build UnoSpySnoop/Lib/UnoSpySnoopProvider/UnoSpySnoopProvider.csproj
 
-    - name: Build with dotnet
-      run: |
-        dotnet build --configuration Release
-        dotnet pack --configuration Release --no-build
-
     - name: Install Nuget
       uses: nuget/setup-nuget@v1
       with:
