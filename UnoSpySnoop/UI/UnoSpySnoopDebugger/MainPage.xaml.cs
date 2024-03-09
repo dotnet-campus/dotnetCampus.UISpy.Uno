@@ -122,6 +122,7 @@ public sealed partial class MainPage : Page
             await snoopUserControl.StartAsync();
 
             RootGrid.Children.Clear();
+            RootGrid.RowDefinitions.Clear();
             RootGrid.Children.Add(snoopUserControl);
         }
     }
