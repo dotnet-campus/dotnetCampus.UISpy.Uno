@@ -196,6 +196,8 @@ public class SpySnoop
 
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Top,
+
+                    IsHitTestVisible = false,
                 };
                 _rootGrid.Children.Add(rectangle);
             }
