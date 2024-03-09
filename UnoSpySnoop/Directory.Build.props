@@ -16,5 +16,8 @@
 
     <!-- Required for Hot Reload (See https://github.com/dotnet/sdk/issues/36666) -->
     <IncludeSourceRevisionInInformationalVersion Condition="'$(Configuration)'=='Debug'">false</IncludeSourceRevisionInInformationalVersion>
+
+    <!-- Do not build by default to prevent contamination of NuGet -->
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 </Project>
