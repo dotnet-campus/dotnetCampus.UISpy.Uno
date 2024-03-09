@@ -11,13 +11,22 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
 
     - name: Install dotnet tool
       run: dotnet tool install -g dotnetCampus.TagToVersion
 
     - name: Set tag to version  
       run: dotnet TagToVersion -t ${{ github.ref }}
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Build
+      run: msbuild /p:Configuration=Release -restore UnoSpySnoop/UnoSpySnoop.sln
+
+    - name: Pack
+      run: dotnet pack --configuration Release --no-build UnoSpySnoop/Lib/UnoSpySnoopProvider/UnoSpySnoopProvider.csproj
 
     - name: Build with dotnet
       run: |

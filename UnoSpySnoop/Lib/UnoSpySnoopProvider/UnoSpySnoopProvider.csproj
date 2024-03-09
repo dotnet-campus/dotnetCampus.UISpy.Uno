@@ -8,6 +8,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>UnoSpySnoop</RootNamespace>
+
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\UnoSpySnoopDebugger.IpcCommunicationContext\**\*.cs" Exclude="..\UnoSpySnoopDebugger.IpcCommunicationContext\bin\**\*.cs;..\UnoSpySnoopDebugger.IpcCommunicationContext\obj\**\*.cs" LinkBase="Contexts" />
