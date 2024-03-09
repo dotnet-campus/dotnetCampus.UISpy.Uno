@@ -27,9 +27,9 @@
                 <ListView.Header>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="6*"></ColumnDefinition>
+                            <ColumnDefinition Width="7*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Border Width="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Background="Gray"></Border>
                         <TextBlock Grid.Column="0" Margin="5 0 0 0">ProcessName</TextBlock>
