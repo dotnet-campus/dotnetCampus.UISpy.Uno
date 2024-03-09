@@ -19,5 +19,21 @@
 
     <!-- Do not build by default to prevent contamination of NuGet -->
     <IsPackable>false</IsPackable>
+
+    <LangVersion>latest</LangVersion>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)..\bin\$(Configuration)</PackageOutputPath>
+
+    <Authors>dotnet-campus</Authors>
+    <RepositoryUrl>https://github.com/dotnet-campus/UnoSpySnoop</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/dotnet-campus/UnoSpySnoop</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Copyright © 2020-2024 dotnet campus, All Rights Reserved.</Copyright>
+
+    <Description>UnoSpySnoop is a tool for inspecting the runtime visual tree of a Skia platforms Uno app.</Description>
+
   </PropertyGroup>
+
+  <ItemGroup>
+    <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+  </ItemGroup>
 </Project>
