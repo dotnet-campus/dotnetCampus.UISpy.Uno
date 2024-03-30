@@ -16,7 +16,8 @@ public class Program
         };
 
         var host = new GtkHost(() => new AppHead());
-
+        // 修复在兆芯机器无法运行
+        host.RenderSurfaceType = RenderSurfaceType.Software;
         host.Run();
     }
 }
