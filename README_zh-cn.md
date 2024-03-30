@@ -1,18 +1,18 @@
 # UnoSpySnoop
 
-UnoSpySnoop ��һ�������������� Skia ƽ̨�µ� UNO Ӧ�� UI ����Ĺ���
+UnoSpySnoop 是一款用来辅助调试 Skia 平台下的 UNO 应用 UI 界面的工具
 
-## Ϊʲô��Ҫ�˹���
+## 为什么需要此工具
 
-��Ϊ�� Skia ƽ̨�£������� WPF ���� GTK ������һ�� Surface ����Ⱦ���档��͵�����ԭ���� WPF �� UI ���Թ��ߣ��� SnoopWpf �ȹ��ߣ���ֻ�ܿ���һ��ͼƬ�����ܻ�ȡ��ȷ�Ľ���ṹ��ͨ�� UnoSpySnoop ���Ժܺõ��ڻ��� Skia ������ƽ̨���� Skia.Wpf �� Skia.Gtk �ϣ����и������濪�����ԣ���߿����ߵĽ��濪��Ч�ʣ��ر��ǵ����� Linux �����ϵ� Skia.Gtk Ӧ�õ�ʱ��
+因为在 Skia 平台下，无论是 WPF 还是 GTK 都采用一个 Surface 来渲染界面。这就导致了原本的 WPF 的 UI 调试工具，如 SnoopWpf 等工具，将只能看到一张图片而不能获取正确的界面结构。通过 UnoSpySnoop 可以很好的在基于 Skia 的桌面平台，如 Skia.Wpf 和 Skia.Gtk 上，进行辅助界面开发调试，提高开发者的界面开发效率，特别是调试在 Linux 桌面上的 Skia.Gtk 应用的时候
 
-## ʹ�÷���
+## 使用方法
 
-��׼�������� UI �������Ŀ���棬�������µ�׼����������
+在准备被调试 UI 界面的项目里面，进行如下的准备工作步骤
 
-1. ��װ��Ϊ UnoSpySnoopProvider �� NuGet ��
-1. ������ UI ����������һ����Ϊ SnoopRootGrid �� Grid �ؼ������ں�����ʾ���������벻Ҫ�� SnoopRootGrid ��������κ�ҵ���߼����棬��Ϊ�� SnoopRootGrid �����ݽ��ᱻ�������
-1. ʹ�� UnoSpySnoop �����ռ��µ� SpySnoop ��̬���͵� StartSpyUI ���������� SnoopRootGrid ��Ϊ�������������׼��������ʾ����������
+1. 安装名为 [UnoSpySnoopProvider](https://www.nuget.org/packages/UnoSpySnoopProvider) 的 NuGet 包
+1. 在最顶层的 UI 界面上添加一个名为 SnoopRootGrid 的 Grid 控件，用于后续显示高亮区域。请不要在 SnoopRootGrid 里面放入任何业务逻辑界面，因为此 SnoopRootGrid 的内容将会被不断清空
+1. 使用 UnoSpySnoop 命名空间下的 SpySnoop 静态类型的 StartSpyUI 方法，传入 SnoopRootGrid 作为参数，即可完成准备工作，示例代码如下
 
 ```csharp
 public sealed partial class MainPage : Page
@@ -27,10 +27,10 @@ public sealed partial class MainPage : Page
 }
 ```
 
-�������׼������֮�󣬼���������Ŀ������ UnoSpySnoopDebugger ���ߣ�ѡ�����е���Ŀ��Ȼ���� `Start UI Spy` ��ť�����ɽ��е��� UI �Ľ���
+完成以上准备工作之后，即可运行项目，随后打开 UnoSpySnoopDebugger 工具，选择运行的项目，然后点击 `Start UI Spy` 按钮，即可进行调试 UI 的界面
 
 ![](./Docs/Images/SelectDebugProcess.png)
 
-## ��л
+## 感谢
 
-��л https://github.com/snoopwpf/snoopwpf �����ṩ�������Դ�Լ� UI ���沼��
+感谢 https://github.com/snoopwpf/snoopwpf 工具提供的灵感来源以及 UI 界面布局

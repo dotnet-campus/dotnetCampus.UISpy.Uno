@@ -15,7 +15,7 @@ The reason for needing this tool is that on the Skia platform, both WPF and GTK 
 
 In the project where the UI interface is to be debugged, follow these preparation steps:
 
-1. Install the NuGet package named UnoSpySnoopProvider.
+1. Install the NuGet package named [UnoSpySnoopProvider](https://www.nuget.org/packages/UnoSpySnoopProvider).
 2. Add a Grid control named SnoopRootGrid at the top level of the UI interface for subsequent display of the highlighted area. Please do not put any business logic interface in SnoopRootGrid, as the content of this SnoopRootGrid will be constantly cleared.
 3. Use the StartSpyUI method of the SpySnoop static type in the UnoSpySnoop namespace, and pass SnoopRootGrid as a parameter to complete the preparation work. Here is an example code:
 
