@@ -8,6 +8,7 @@ using dotnetCampus.Ipc.Pipes;
 using dotnetCampus.Ipc.Threading;
 
 using Microsoft.UI.Xaml.Data;
+
 using UnoSpySnoopDebugger.Communications;
 using UnoSpySnoopDebugger.IpcCommunicationContext;
 using UnoSpySnoopDebugger.Models;
@@ -47,6 +48,11 @@ public sealed partial class MainPage : Page
 
         var processes = Process.GetProcesses().ToList();
 
+        foreach (Process process in processes)
+        {
+            Console.WriteLine($"Process: {process.ProcessName}");
+        }
+
 #if DEBUG
         var currentProcess = Process.GetCurrentProcess();
         var otherInstance = processes.FirstOrDefault(p => p.Id != currentProcess.Id && p.ProcessName == currentProcess.ProcessName);
@@ -68,6 +74,7 @@ public sealed partial class MainPage : Page
     private async Task PeekProcess(Process process)
     {
         var peerName = $"UnoSpySnoop_{process.ProcessName}_{process.Id}";
+        Console.WriteLine($"Try peek {peerName}");
 
         try
         {
@@ -100,6 +107,7 @@ public sealed partial class MainPage : Page
         catch (IpcClientPipeConnectionException e)
         {
             // Connection Fail
+            Console.WriteLine($"Connection Fail {peerName}");
         }
     }
 
