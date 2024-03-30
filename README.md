@@ -2,7 +2,7 @@
 
 [中文文档](./README_zh-cn.md)
 
-![](https://github.com/dotnet-campus/UnoSpySnoop/workflows/dotnet-build/badge.svg)
+![](https://github.com/dotnet-campus/UnoSpySnoop/workflows/BuildProject/badge.svg)
 [![](https://img.shields.io/nuget/v/UnoSpySnoopProvider.svg)](https://www.nuget.org/packages/UnoSpySnoopProvider)
 
 UnoSpySnoop is a tool for inspecting the runtime visual tree of a Skia platforms Uno app.
