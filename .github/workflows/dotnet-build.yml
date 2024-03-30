@@ -14,4 +14,4 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     - name: Build
-      run: msbuild /p:Configuration=Release -restore UnoSpySnoop/UnoSpySnoop.sln
+      run: msbuild /p:Configuration=Release -restore
