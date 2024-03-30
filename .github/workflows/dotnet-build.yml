@@ -3,7 +3,7 @@ name: BuildProject
 on: [push]
 
 jobs:
-  build:
+  BuildOnWindows:
 
     runs-on: windows-latest
 
@@ -15,3 +15,20 @@ jobs:
 
     - name: Build
       run: msbuild /p:Configuration=Release -restore
+
+  BuildOnLinux:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: BuildGtk
+      run: dotnet build UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Gtk/UnoSpySnoopDebugger.Skia.Gtk.csproj
+    - name: BuildFrameBuffer
+      run: dotnet build UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Linux.FrameBuffer/UnoSpySnoopDebugger.Skia.Linux.FrameBuffer.csproj
+
+  BuildOnMac:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: BuildGtk
+      run: dotnet build UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Gtk/UnoSpySnoopDebugger.Skia.Gtk.csproj
