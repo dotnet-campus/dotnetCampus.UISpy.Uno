@@ -24,9 +24,9 @@ jobs:
     - name: Restore
       run: dotnet workload restore UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Gtk/UnoSpySnoopDebugger.Skia.Gtk.csproj
     - name: BuildGtk
-      run: dotnet build -c release -r linux-x64 UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Gtk/UnoSpySnoopDebugger.Skia.Gtk.csproj
+      run: dotnet build -c release -r linux-x64 -f net8.0 UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Gtk/UnoSpySnoopDebugger.Skia.Gtk.csproj
     - name: BuildFrameBuffer
-      run: dotnet build -c release -r linux-x64 UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Linux.FrameBuffer/UnoSpySnoopDebugger.Skia.Linux.FrameBuffer.csproj
+      run: dotnet build -c release -r linux-x64 -f net8.0 UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Linux.FrameBuffer/UnoSpySnoopDebugger.Skia.Linux.FrameBuffer.csproj
 
   BuildOnMac:
     runs-on: macos-latest
