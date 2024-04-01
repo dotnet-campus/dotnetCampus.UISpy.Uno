@@ -1,7 +1,7 @@
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-
+using System.Text.RegularExpressions;
 using dotnetCampus.Ipc.Context;
 using dotnetCampus.Ipc.Exceptions;
 using dotnetCampus.Ipc.IpcRouteds.DirectRouteds;
@@ -70,16 +70,102 @@ public sealed partial class MainPage : Page
 
 #endif
 
-        await Parallel.ForEachAsync(processes, async (process, _) =>
+        HashSet<string> ignoreProcessNameHashSet;
+        if (OperatingSystem.IsLinux())
         {
-            await PeekProcess(process);
-            process.Dispose();
-        });
+            ignoreProcessNameHashSet = new HashSet<string>()
+            {
+                "(sd-pam)",
+                "ModemManager",
+                "NetworkManager",
+                "Xorg",
+                "accounts_daemon",
+                "acpi_thermal_pm",
+                "agent",
+                "at-spi-bus-launcher",
+                "ata_sff",
+                "bamfdaemon",
+                "bash",
+                "cron",
+                "cryptd",
+                "cupsd",
+                "dbus-daemon",
+                "kwin_x11",
+                "kwin_no_scale",
+                "sh",
+                "ssh",
+                "sshd",
+                "su",
+                "sudo",
+                "systemd",
+            };
+        }
+        else if (OperatingSystem.IsWindows())
+        {
+            ignoreProcessNameHashSet = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                "cmd",
+                "conhost",
+                "csrss",
+                "ctfmon",
+                "dllhost",
+                "dwm",
+                "explorer",
+                "GameBar",
+                "OpenConsole",
+                "RuntimeBroker",
+                "SearchHost",
+                "SearchIndexer",
+                "svchost",
+                "Taskmgr",
+            };
+        }
+        else
+        {
+            ignoreProcessNameHashSet = new HashSet<string>();
+        }
+
+
+        await Parallel.ForEachAsync(processes.Where(t => !CanIgnore(t)), async (process, _) =>
+            {
+                await PeekProcess(process);
+                process.Dispose();
+            });
+
+        bool CanIgnore(Process process)
+        {
+            if (ignoreProcessNameHashSet.Contains(process.ProcessName))
+            {
+                return true;
+            }
+
+            if (OperatingSystem.IsLinux())
+            {
+                if (Regex.IsMatch(process.ProcessName, @"cpuhp/\d+"))
+                {
+                    return true;
+                }
+                if (Regex.IsMatch(process.ProcessName, @"idle_inject/\d+"))
+                {
+                    return true;
+                }
+                if (Regex.IsMatch(process.ProcessName, @"ksoftirqd/\d+"))
+                {
+                    return true;
+                }
+                if (Regex.IsMatch(process.ProcessName, @"kworker/\d+\:\d"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 
     private async Task PeekProcess(Process process)
     {
-       var peerName = DebugIpcPeerNameGenerator.GetPeerNameFromProcess(process);
+        var peerName = DebugIpcPeerNameGenerator.GetPeerNameFromProcess(process);
 
         try
         {
