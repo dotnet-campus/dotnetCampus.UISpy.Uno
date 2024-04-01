@@ -78,8 +78,7 @@ public sealed partial class MainPage : Page
 
     private async Task PeekProcess(Process process)
     {
-        var peerName = $"UnoSpySnoop_{process.ProcessName}_{process.Id}";
-        Console.WriteLine($"Try peek {peerName}");
+       var peerName = DebugIpcPeerNameGenerator.GetPeerNameFromProcess(process);
 
         try
         {
