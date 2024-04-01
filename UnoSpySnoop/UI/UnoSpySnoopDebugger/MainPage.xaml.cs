@@ -99,15 +99,21 @@ public sealed partial class MainPage : Page
                 ProcessName = response.ProcessName,
             };
 
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                ProcessInfoList.Add(info);
-            });
+            DispatcherQueue.TryEnqueue(() => { ProcessInfoList.Add(info); });
         }
         catch (IpcClientPipeConnectionException e)
         {
             // Connection Fail
             Console.WriteLine($"Connection Fail {peerName}");
+        }
+        catch (PlatformNotSupportedException e)
+        {
+            Console.WriteLine($"PlatformNotSupportedException {peerName} {e}");
+            Console.Read();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
         }
     }
 
