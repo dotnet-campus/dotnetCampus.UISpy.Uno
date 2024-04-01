@@ -74,11 +74,6 @@ public sealed partial class MainPage : Page
             await PeekProcess(process);
             process.Dispose();
         });
-
-        foreach (var peerName in _platformNotSupportedExceptionNameQueue)
-        {
-            Console.WriteLine($"NotSupport {peerName}");
-        }
     }
 
     private async Task PeekProcess(Process process)
@@ -119,15 +114,12 @@ public sealed partial class MainPage : Page
         catch (PlatformNotSupportedException e)
         {
             Console.WriteLine($"PlatformNotSupportedException {peerName}");
-            _platformNotSupportedExceptionNameQueue.Enqueue(peerName);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
         }
     }
-
-    private ConcurrentQueue<string> _platformNotSupportedExceptionNameQueue=new ConcurrentQueue<string>();
 
     public JsonIpcDirectRoutedProvider IpcProvider { get; set; }
 
