@@ -1,14 +1,13 @@
+using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-
+using System.Text.RegularExpressions;
 using dotnetCampus.Ipc.Context;
 using dotnetCampus.Ipc.Exceptions;
 using dotnetCampus.Ipc.IpcRouteds.DirectRouteds;
 using dotnetCampus.Ipc.Pipes;
 using dotnetCampus.Ipc.Threading;
-
 using Microsoft.UI.Xaml.Data;
-
 using UnoSpySnoopDebugger.Communications;
 using UnoSpySnoopDebugger.IpcCommunicationContext;
 using UnoSpySnoopDebugger.Models;
@@ -48,14 +47,10 @@ public sealed partial class MainPage : Page
 
         var processes = Process.GetProcesses().ToList();
 
-        foreach (Process process in processes)
-        {
-            Console.WriteLine($"Process: {process.ProcessName}");
-        }
-
 #if DEBUG
         var currentProcess = Process.GetCurrentProcess();
-        var otherInstance = processes.FirstOrDefault(p => p.Id != currentProcess.Id && p.ProcessName == currentProcess.ProcessName);
+        var otherInstance =
+            processes.FirstOrDefault(p => p.Id != currentProcess.Id && p.ProcessName == currentProcess.ProcessName);
         if (otherInstance != null)
         {
             processes.Remove(otherInstance);
@@ -68,13 +63,106 @@ public sealed partial class MainPage : Page
 
 #endif
 
-        await Parallel.ForEachAsync(processes, async (process, _) => { await PeekProcess(process); });
+        HashSet<string> ignoreProcessNameHashSet;
+        if (OperatingSystem.IsLinux())
+        {
+            ignoreProcessNameHashSet = new HashSet<string>()
+            {
+                "(sd-pam)",
+                "ModemManager",
+                "NetworkManager",
+                "Xorg",
+                "accounts_daemon",
+                "acpi_thermal_pm",
+                "agent",
+                "at-spi-bus-launcher",
+                "ata_sff",
+                "bamfdaemon",
+                "bash",
+                "cron",
+                "cryptd",
+                "cupsd",
+                "dbus-daemon",
+                "kwin_x11",
+                "kwin_no_scale",
+                "sh",
+                "ssh",
+                "sshd",
+                "su",
+                "sudo",
+                "systemd",
+            };
+        }
+        else if (OperatingSystem.IsWindows())
+        {
+            ignoreProcessNameHashSet = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                "cmd",
+                "conhost",
+                "csrss",
+                "ctfmon",
+                "dllhost",
+                "dwm",
+                "explorer",
+                "GameBar",
+                "OpenConsole",
+                "RuntimeBroker",
+                "SearchHost",
+                "SearchIndexer",
+                "svchost",
+                "Taskmgr",
+            };
+        }
+        else
+        {
+            ignoreProcessNameHashSet = new HashSet<string>();
+        }
+
+
+        await Parallel.ForEachAsync(processes.Where(t => !CanIgnore(t)), async (process, _) =>
+        {
+            await PeekProcess(process);
+            process.Dispose();
+        });
+        return;
+
+        bool CanIgnore(Process process)
+        {
+            if (ignoreProcessNameHashSet.Contains(process.ProcessName))
+            {
+                return true;
+            }
+
+            if (OperatingSystem.IsLinux())
+            {
+                if (Regex.IsMatch(process.ProcessName, @"cpuhp/\d+"))
+                {
+                    return true;
+                }
+
+                if (Regex.IsMatch(process.ProcessName, @"idle_inject/\d+"))
+                {
+                    return true;
+                }
+
+                if (Regex.IsMatch(process.ProcessName, @"ksoftirqd/\d+"))
+                {
+                    return true;
+                }
+
+                if (Regex.IsMatch(process.ProcessName, @"kworker/\d+\:\d"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 
     private async Task PeekProcess(Process process)
     {
-        var peerName = $"UnoSpySnoop_{process.ProcessName}_{process.Id}";
-        Console.WriteLine($"Try peek {peerName}");
+        var peerName = DebugIpcPeerNameGenerator.GetPeerNameFromProcess(process);
 
         try
         {
@@ -99,15 +187,20 @@ public sealed partial class MainPage : Page
                 ProcessName = response.ProcessName,
             };
 
-            DispatcherQueue.TryEnqueue(() =>
-            {
-                ProcessInfoList.Add(info);
-            });
+            DispatcherQueue.TryEnqueue(() => { ProcessInfoList.Add(info); });
         }
         catch (IpcClientPipeConnectionException e)
         {
             // Connection Fail
             Console.WriteLine($"Connection Fail {peerName}");
+        }
+        catch (PlatformNotSupportedException e)
+        {
+            Console.WriteLine($"PlatformNotSupportedException {peerName}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
         }
     }
 

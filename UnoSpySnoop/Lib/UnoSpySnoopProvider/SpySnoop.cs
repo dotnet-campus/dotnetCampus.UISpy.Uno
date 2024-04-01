@@ -23,7 +23,7 @@ public class SpySnoop
         {
             var currentProcess = Process.GetCurrentProcess();
 
-            debugIpcName = $"UnoSpySnoop_{currentProcess.ProcessName}_{currentProcess.Id}";
+            debugIpcName = DebugIpcPeerNameGenerator.GetPeerNameFromProcess(currentProcess);
         }
 
         var unoSpySnoop = new SpySnoop(spySnoopRootGrid, debugIpcName);
