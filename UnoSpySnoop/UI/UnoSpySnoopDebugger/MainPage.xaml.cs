@@ -6,14 +6,13 @@ using dotnetCampus.Ipc.Exceptions;
 using dotnetCampus.Ipc.IpcRouteds.DirectRouteds;
 using dotnetCampus.Ipc.Pipes;
 using dotnetCampus.Ipc.Threading;
-using dotnetCampus.Ipc.Utils.Logging;
+
 using Microsoft.UI.Xaml.Data;
 
 using UnoSpySnoopDebugger.Communications;
 using UnoSpySnoopDebugger.IpcCommunicationContext;
 using UnoSpySnoopDebugger.Models;
 using UnoSpySnoopDebugger.View;
-using LogLevel = dotnetCampus.Ipc.Utils.Logging.LogLevel;
 
 namespace UnoSpySnoopDebugger;
 
@@ -29,7 +28,6 @@ public sealed partial class MainPage : Page
         {
             IpcTaskScheduling = IpcTaskScheduling.LocalOneByOne,
             IpcClientPipeConnector = new UnoSpySnoopDebuggerIpcClientPipeConnector(),
-            IpcLoggerProvider = s => new CustomIpcLogger(s)
         });
         var jsonIpcDirectRoutedProvider = new JsonIpcDirectRoutedProvider(ipcProvider);
         IpcProvider = jsonIpcDirectRoutedProvider;
@@ -70,12 +68,7 @@ public sealed partial class MainPage : Page
 
 #endif
 
-        foreach (Process process in processes)
-        {
-            await PeekProcess(process);
-        }
-
-        //await Parallel.ForEachAsync(processes, async (process, _) => { await PeekProcess(process); });
+        await Parallel.ForEachAsync(processes, async (process, _) => { await PeekProcess(process); });
     }
 
     private async Task PeekProcess(Process process)
@@ -106,16 +99,15 @@ public sealed partial class MainPage : Page
                 ProcessName = response.ProcessName,
             };
 
-            DispatcherQueue.TryEnqueue(() => { ProcessInfoList.Add(info); });
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                ProcessInfoList.Add(info);
+            });
         }
         catch (IpcClientPipeConnectionException e)
         {
             // Connection Fail
             Console.WriteLine($"Connection Fail {peerName}");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
         }
     }
 
@@ -159,22 +151,5 @@ public class NotNullToIsEnableConverter : IValueConverter
     public object ConvertBack(object value, Type targetType, object parameter, string language)
     {
         throw new NotSupportedException();
-    }
-}
-
-class CustomIpcLogger : IpcLogger
-{
-    public CustomIpcLogger(string name) : base(name)
-    {
-    }
-
-    protected override bool IsEnabled(LogLevel logLevel)
-    {
-        return true;
-    }
-
-    protected override void Log<TState>(LogLevel logLevel, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
-    {
-        Console.WriteLine($"[IpcLogger]{logLevel} {formatter(state, exception)}");
     }
 }
