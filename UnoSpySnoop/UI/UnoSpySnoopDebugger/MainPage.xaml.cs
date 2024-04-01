@@ -68,7 +68,11 @@ public sealed partial class MainPage : Page
 
 #endif
 
-        await Parallel.ForEachAsync(processes, async (process, _) => { await PeekProcess(process); });
+        await Parallel.ForEachAsync(processes, async (process, _) =>
+        {
+            await PeekProcess(process);
+            process.Dispose();
+        });
     }
 
     private async Task PeekProcess(Process process)
