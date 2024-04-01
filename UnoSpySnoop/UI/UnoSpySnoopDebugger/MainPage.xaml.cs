@@ -49,12 +49,6 @@ public sealed partial class MainPage : Page
 
         var processes = Process.GetProcesses().ToList();
 
-        processes.Sort((a, b) => string.Compare(a.ProcessName, b.ProcessName, StringComparison.Ordinal));
-        foreach (Process process in processes)
-        {
-            Console.WriteLine($"Process: {process.ProcessName}");
-        }
-
 #if DEBUG
         var currentProcess = Process.GetCurrentProcess();
         var otherInstance = processes.FirstOrDefault(p => p.Id != currentProcess.Id && p.ProcessName == currentProcess.ProcessName);
