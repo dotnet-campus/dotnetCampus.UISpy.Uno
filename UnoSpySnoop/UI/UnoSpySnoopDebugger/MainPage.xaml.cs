@@ -7,9 +7,7 @@ using dotnetCampus.Ipc.Exceptions;
 using dotnetCampus.Ipc.IpcRouteds.DirectRouteds;
 using dotnetCampus.Ipc.Pipes;
 using dotnetCampus.Ipc.Threading;
-
 using Microsoft.UI.Xaml.Data;
-
 using UnoSpySnoopDebugger.Communications;
 using UnoSpySnoopDebugger.IpcCommunicationContext;
 using UnoSpySnoopDebugger.Models;
@@ -51,7 +49,8 @@ public sealed partial class MainPage : Page
 
 #if DEBUG
         var currentProcess = Process.GetCurrentProcess();
-        var otherInstance = processes.FirstOrDefault(p => p.Id != currentProcess.Id && p.ProcessName == currentProcess.ProcessName);
+        var otherInstance =
+            processes.FirstOrDefault(p => p.Id != currentProcess.Id && p.ProcessName == currentProcess.ProcessName);
         if (otherInstance != null)
         {
             processes.Remove(otherInstance);
@@ -121,10 +120,11 @@ public sealed partial class MainPage : Page
 
 
         await Parallel.ForEachAsync(processes.Where(t => !CanIgnore(t)), async (process, _) =>
-            {
-                await PeekProcess(process);
-                process.Dispose();
-            });
+        {
+            await PeekProcess(process);
+            process.Dispose();
+        });
+        return;
 
         bool CanIgnore(Process process)
         {
@@ -139,14 +139,17 @@ public sealed partial class MainPage : Page
                 {
                     return true;
                 }
+
                 if (Regex.IsMatch(process.ProcessName, @"idle_inject/\d+"))
                 {
                     return true;
                 }
+
                 if (Regex.IsMatch(process.ProcessName, @"ksoftirqd/\d+"))
                 {
                     return true;
                 }
+
                 if (Regex.IsMatch(process.ProcessName, @"kworker/\d+\:\d"))
                 {
                     return true;
