@@ -3,12 +3,19 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:SampleUnoApp"
       xmlns:utu="using:Uno.Toolkit.UI"
+      xmlns:l="using:dotnetCampus.SampleUnoApp.Localizations"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-  <StackPanel utu:SafeArea.Insets="VisibleBounds"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center">
-    <TextBlock AutomationProperties.AutomationId="HelloTextBlock"
-          Text="Hello Uno Platform"
-          HorizontalAlignment="Center" />
-  </StackPanel>
+
+    <Page.Resources>
+        <l:LangBindingSource x:Key="LangBindingSource" />
+    </Page.Resources>
+
+    <StackPanel utu:SafeArea.Insets="VisibleBounds"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+        <TextBlock AutomationProperties.AutomationId="HelloTextBlock"
+                   Text="{Binding Lang.MainPage.Hello, Source={StaticResource LangBindingSource}}"
+                   HorizontalAlignment="Center" />
+    </StackPanel>
+
 </Page>

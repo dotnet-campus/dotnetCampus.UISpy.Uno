@@ -1,3 +1,4 @@
+using dotnetCampus.SampleUnoApp.Localizations;
 using dotnetCampus.SampleUnoApp.Startup;
 
 using Uno.Resizetizer;
@@ -20,7 +21,13 @@ public partial class App : Application
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        MainWindow = new Window();
+        MainWindow = new Window
+        {
+            AppWindow =
+            {
+                Title = Lang.Current.ApplicationName,
+            }
+        };
         this.AfterLaunched();
 #if DEBUG
         MainWindow.EnableHotReload();
