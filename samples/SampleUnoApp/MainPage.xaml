@@ -14,7 +14,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
         <TextBlock AutomationProperties.AutomationId="HelloTextBlock"
-                   Text="Hello Uno Platform"
+                   Text="{x:Bind Lang.MainPage.Hello}"
                    HorizontalAlignment="Center" />
         <Button Content="Get focus" />
     </StackPanel>

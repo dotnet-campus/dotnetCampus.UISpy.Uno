@@ -1,4 +1,3 @@
-using dotnetCampus.SampleUnoApp.Localizations.Localizations;
 using dotnetCampus.UISpy.Uno;
 
 namespace dotnetCampus.SampleUnoApp;
@@ -12,4 +11,5 @@ public sealed partial class MainPage : Page
         this.AttachDevTools();
     }
 
+    public dotnetCampus.SampleUnoApp.Localizations.Localizations.ILocalized_Root Lang => dotnetCampus.SampleUnoApp.Localizations.Lang.Current;
 }
