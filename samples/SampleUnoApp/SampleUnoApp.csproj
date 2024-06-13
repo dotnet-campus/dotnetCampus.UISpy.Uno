@@ -50,7 +50,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="dotnetCampus.SourceLocalizations" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\dotnetCampus.UISpy.Uno\dotnetCampus.UISpy.Uno.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <LocalizationFile Include="Localizations\**\*.toml" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 <Project ToolsVersion="15.0">
   <ItemGroup>
+    <PackageVersion Include="dotnetCampus.SourceLocalizations" Version="0.1.0-alpha03" />
     <PackageVersion Include="Uno.WinUI.DevServer" Version="$(UnoVersion)" />
   </ItemGroup>
 </Project>

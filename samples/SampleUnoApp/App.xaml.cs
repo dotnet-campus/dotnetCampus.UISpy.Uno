@@ -1,6 +1,9 @@
+using dotnetCampus.SampleUnoApp.Startup;
+
 using Uno.Resizetizer;
 
 namespace dotnetCampus.SampleUnoApp;
+
 public partial class App : Application
 {
     /// <summary>
@@ -9,6 +12,7 @@ public partial class App : Application
     /// </summary>
     public App()
     {
+        this.SetupApp();
         this.InitializeComponent();
     }
 
@@ -17,6 +21,7 @@ public partial class App : Application
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         MainWindow = new Window();
+        this.AfterLaunched();
 #if DEBUG
         MainWindow.EnableHotReload();
 #endif
@@ -46,6 +51,7 @@ public partial class App : Application
         MainWindow.SetWindowIcon();
         // Ensure the current window is active
         MainWindow.Activate();
+        this.AfterMainWindowShown();
     }
 
     /// <summary>
