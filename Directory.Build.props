@@ -1,6 +1,6 @@
 <Project>
 
-  <Import Project="$(MSBuildThisFileDirectory)..\Build\Version.props" />
+  <Import Project="$(MSBuildThisFileDirectory)build\Version.props" />
 
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
@@ -8,6 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <UnoSingleProject>true</UnoSingleProject>
   </PropertyGroup>
 
   <PropertyGroup>

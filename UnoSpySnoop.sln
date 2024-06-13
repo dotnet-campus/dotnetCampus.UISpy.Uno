@@ -6,11 +6,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{E287
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{CA52C3FC-4FBF-4B72-A552-E952E96BE5E9}"
 	ProjectSection(SolutionItems) = preProject
-		UnoSpySnoop\Directory.Build.props = UnoSpySnoop\Directory.Build.props
-		UnoSpySnoop\Directory.Build.targets = UnoSpySnoop\Directory.Build.targets
-		UnoSpySnoop\Directory.Packages.props = UnoSpySnoop\Directory.Packages.props
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		Directory.Packages.props = Directory.Packages.props
 		global.json = global.json
-		UnoSpySnoop\solution-config.props.sample = UnoSpySnoop\solution-config.props.sample
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Action", "GitHub Action", "{302190EB-8221-45F7-9EBC-3B5DA8009B21}"
@@ -58,6 +57,12 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {38F95BC8-C59F-4B7A-9471-F36AC12C89CF}
+	EndGlobalSection
+EndGlobal
+= {38F95BC8-C59F-4B7A-9471-F36AC12C89CF}
+	EndGlobalSection
+EndGlobal
 		SolutionGuid = {38F95BC8-C59F-4B7A-9471-F36AC12C89CF}
 	EndGlobalSection
 EndGlobal
