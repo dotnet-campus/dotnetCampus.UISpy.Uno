@@ -14,7 +14,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
         <TextBlock AutomationProperties.AutomationId="HelloTextBlock"
-                   Text="{Binding Lang.MainPage.Hello, Source={StaticResource LangBindingSource}}"
+                   Text="Hello Uno Platform"
                    HorizontalAlignment="Center" />
     </StackPanel>
 
