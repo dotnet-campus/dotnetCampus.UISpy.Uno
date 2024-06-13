@@ -1,9 +1,13 @@
-namespace SampleUnoApp;
+using dotnetCampus.UISpy.Uno;
+
+namespace dotnetCampus.SampleUnoApp;
 
 public sealed partial class MainPage : Page
 {
     public MainPage()
     {
-        this.InitializeComponent();
+        InitializeComponent();
+
+        this.AttachDevTools();
     }
 }

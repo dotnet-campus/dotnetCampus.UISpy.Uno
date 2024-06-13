@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFrameworks>
       net8.0-desktop;
-      net8.0-windows10.0.19041;
       net8.0-maccatalyst;
       net8.0;
     </TargetFrameworks>
@@ -49,5 +48,9 @@
     <IsUiAutomationMappingEnabled>True</IsUiAutomationMappingEnabled>
     <DefineConstants>$(DefineConstants);USE_UITESTS</DefineConstants>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\dotnetCampus.UISpy.Uno\dotnetCampus.UISpy.Uno.csproj" />
+  </ItemGroup>
 
 </Project>

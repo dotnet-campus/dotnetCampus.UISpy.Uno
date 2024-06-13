@@ -1,10 +1,6 @@
-using System;
-
-using Microsoft.Extensions.Logging;
-
 using Uno.Resizetizer;
 
-namespace SampleUnoApp;
+namespace dotnetCampus.SampleUnoApp;
 public partial class App : Application
 {
     /// <summary>

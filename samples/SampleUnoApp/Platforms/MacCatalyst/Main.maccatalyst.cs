@@ -1,6 +1,9 @@
+using dotnetCampus.SampleUnoApp;
+
 using UIKit;
 
-namespace SampleUnoApp.MacCatalyst;
+namespace dotnetCampus.SampleUnoApp;
+
 public class EntryPoint
 {
     // This is the main entry point of the application.

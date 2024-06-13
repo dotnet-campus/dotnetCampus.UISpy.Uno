@@ -1,6 +1,7 @@
 using Uno.UI.Runtime.Skia;
 
-namespace SampleUnoApp;
+namespace dotnetCampus.SampleUnoApp;
+
 public class Program
 {
     [STAThread]
