@@ -1,40 +1,35 @@
 <Project>
+
   <Import Project="$(MSBuildThisFileDirectory)..\Build\Version.props" />
+
   <PropertyGroup>
-    <DotNetVersion>net8.0</DotNetVersion>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-
-    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-
-    <!--
-      Adding NoWarn to remove build warnings
-      NU1507: Warning when there are multiple package sources when using CPM with no source mapping
-      NETSDK1201: Warning that specifying RID won't create self containing app
-      PRI257: Ignore default language (en) not being one of the included resources (eg en-us, en-uk)
-    -->
-    <NoWarn>$(NoWarn);NU1507;NETSDK1201;PRI257</NoWarn>
-
-    <!-- Required for Hot Reload (See https://github.com/dotnet/sdk/issues/36666) -->
-    <IncludeSourceRevisionInInformationalVersion Condition="'$(Configuration)'=='Debug'">false</IncludeSourceRevisionInInformationalVersion>
-
-    <!-- Do not build by default to prevent contamination of NuGet -->
-    <IsPackable>false</IsPackable>
-
     <LangVersion>latest</LangVersion>
-    <PackageOutputPath>$(MSBuildThisFileDirectory)..\bin\$(Configuration)</PackageOutputPath>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
 
+  <PropertyGroup>
+    <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
+    <ThisYear>$([System.DateTime]::Now.ToString(`yyyy`))</ThisYear>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <Authors>dotnet-campus</Authors>
     <RepositoryUrl>https://github.com/dotnet-campus/UnoSpySnoop</RepositoryUrl>
     <PackageProjectUrl>https://github.com/dotnet-campus/UnoSpySnoop</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
-    <Copyright>Copyright © 2020-2024 dotnet campus, All Rights Reserved.</Copyright>
-
+    <Copyright>Copyright © $(ThisYear) dotnet campus, All Rights Reserved.</Copyright>
     <Description>UnoSpySnoop is a tool for inspecting the runtime visual tree of a Skia platforms Uno app.</Description>
-
   </PropertyGroup>
 
-  <ItemGroup>
-    <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
-  </ItemGroup>
+  <!-- See https://aka.platform.uno/using-uno-sdk#implicit-packages for more information regarding the Implicit Packages version properties. -->
+  <PropertyGroup>
+    <UnoExtensionsVersion>4.1.24</UnoExtensionsVersion>
+    <UnoToolkitVersion>6.0.24</UnoToolkitVersion>
+    <UnoThemesVersion>5.0.13</UnoThemesVersion>
+    <UnoCSharpMarkupVersion>5.2.14</UnoCSharpMarkupVersion>
+  </PropertyGroup>
+
 </Project>
