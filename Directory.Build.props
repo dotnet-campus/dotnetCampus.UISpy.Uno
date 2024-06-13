@@ -18,11 +18,11 @@
 
   <PropertyGroup>
     <Authors>dotnet-campus</Authors>
-    <RepositoryUrl>https://github.com/dotnet-campus/UnoSpySnoop</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/dotnet-campus/UnoSpySnoop</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dotnet-campus/dotnetCampus.UISpy.Uno</RepositoryUrl>
+    <PackageProjectUrl>https://www.nuget.org/packages/dotnetCampus.UISpy.Uno</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright © $(ThisYear) dotnet campus, All Rights Reserved.</Copyright>
-    <Description>UnoSpySnoop is a tool for inspecting the runtime visual tree of a Skia platforms Uno app.</Description>
+    <Description>dotnetCampus.UISpy.Uno is a tool for inspecting the runtime visual tree of a Skia platforms Uno app.</Description>
   </PropertyGroup>
 
   <!-- See https://aka.platform.uno/using-uno-sdk#implicit-packages for more information regarding the Implicit Packages version properties. -->
