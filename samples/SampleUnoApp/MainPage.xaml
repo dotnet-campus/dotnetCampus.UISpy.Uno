@@ -1,0 +1,22 @@
+﻿<Page x:Class="dotnetCampus.SampleUnoApp.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:SampleUnoApp"
+      xmlns:utu="using:Uno.Toolkit.UI"
+      xmlns:l="using:dotnetCampus.SampleUnoApp.Localizations"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <l:LangBindingSource x:Key="LangBindingSource" />
+    </Page.Resources>
+
+    <StackPanel utu:SafeArea.Insets="VisibleBounds"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+        <TextBlock AutomationProperties.AutomationId="HelloTextBlock"
+                   Text="{x:Bind Lang.MainPage.Hello}"
+                   HorizontalAlignment="Center" />
+        <Button Content="Get focus" />
+    </StackPanel>
+
+</Page>

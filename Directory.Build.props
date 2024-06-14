@@ -1,0 +1,36 @@
+<Project>
+
+  <Import Project="$(MSBuildThisFileDirectory)build\Version.props" />
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <UnoSingleProject>true</UnoSingleProject>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
+    <ThisYear>$([System.DateTime]::Now.ToString(`yyyy`))</ThisYear>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>dotnet-campus</Authors>
+    <RepositoryUrl>https://github.com/dotnet-campus/dotnetCampus.UISpy.Uno</RepositoryUrl>
+    <PackageProjectUrl>https://www.nuget.org/packages/dotnetCampus.UISpy.Uno</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Copyright © $(ThisYear) dotnet campus, All Rights Reserved.</Copyright>
+    <Description>dotnetCampus.UISpy.Uno is a tool for inspecting the runtime visual tree of a Skia platforms Uno app.</Description>
+  </PropertyGroup>
+
+  <!-- See https://aka.platform.uno/using-uno-sdk#implicit-packages for more information regarding the Implicit Packages version properties. -->
+  <PropertyGroup>
+    <UnoExtensionsVersion>4.1.24</UnoExtensionsVersion>
+    <UnoToolkitVersion>6.0.24</UnoToolkitVersion>
+    <UnoThemesVersion>5.0.13</UnoThemesVersion>
+    <UnoCSharpMarkupVersion>5.2.14</UnoCSharpMarkupVersion>
+  </PropertyGroup>
+
+</Project>
