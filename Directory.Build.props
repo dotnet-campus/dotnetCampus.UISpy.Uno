@@ -21,6 +21,8 @@
     <!-- 输出符号文件 -->
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <!-- 嵌入源代码到符号文件，方便调试 -->
+    <EmbedAllSources>true</EmbedAllSources>
   </PropertyGroup>
 
   <PropertyGroup>
