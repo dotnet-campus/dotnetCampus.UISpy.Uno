@@ -9,6 +9,7 @@
     <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <UnoSingleProject>true</UnoSingleProject>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup>
