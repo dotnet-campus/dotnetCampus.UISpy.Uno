@@ -4,7 +4,7 @@ dotnetCampus.UISpy.Uno 是一款用来辅助调试 Skia 平台下的 UNO 应用 
 
 ## 为什么需要此工具
 
-因为在 Skia 平台下，无论是 WPF 还是 GTK 都采用一个 Surface 来渲染界面。这就导致了原本的 WPF 的 UI 调试工具，如 SnoopWpf 等工具，将只能看到一张图片而不能获取正确的界面结构。通过 UnoSpySnoop 可以很好的在基于 Skia 的桌面平台，如 Skia.Wpf 和 Skia.Gtk 上，进行辅助界面开发调试，提高开发者的界面开发效率，特别是调试在 Linux 桌面上的 Skia.Gtk 应用的时候
+因为在 Skia 平台下，无论是 WPF 还是 GTK 或 X11 都采用一个 Surface 来渲染界面。这就导致了原本的 WPF 的 UI 调试工具，如 SnoopWpf 等工具，将只能看到一张图片而不能获取正确的界面结构。通过 UnoSpySnoop 可以很好的在基于 Skia 的桌面平台，如 Skia.Wpf 和 Skia.Gtk 和 Skia.X11 上，进行辅助界面开发调试，提高开发者的界面开发效率，特别是调试在 Linux 桌面上的 Skia.Gtk 或 Skia.X11 应用的时候
 
 ## 使用方法
 
@@ -29,4 +29,4 @@ public sealed partial class MainPage : Page
 
 完成以上准备工作之后，即可运行项目，随后在窗口获得焦点时按 F12 即可进行调试 UI 的界面
 
-![](./Docs/Images/SelectDebugProcess.png)
+![](./Docs/Images/SpySampleUnoApp.png)

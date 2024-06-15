@@ -17,6 +17,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <!-- 输出符号文件 -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <!-- 嵌入源代码到符号文件，方便调试 -->
+    <EmbedAllSources>true</EmbedAllSources>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <Authors>dotnet-campus</Authors>
     <RepositoryUrl>https://github.com/dotnet-campus/dotnetCampus.UISpy.Uno</RepositoryUrl>
     <PackageProjectUrl>https://www.nuget.org/packages/dotnetCampus.UISpy.Uno</PackageProjectUrl>

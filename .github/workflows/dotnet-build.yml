@@ -21,22 +21,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: RestoreWorkload
-      run: dotnet workload restore UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Gtk/UnoSpySnoopDebugger.Skia.Gtk.csproj
-    - name: RestoreGtk
-      run: dotnet restore -p:TargetFramework=net8.0 -r linux-x64 UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Gtk/UnoSpySnoopDebugger.Skia.Gtk.csproj
-    - name: BuildGtk
-      run: dotnet build -c release -r linux-x64 -p:TargetFramework=net8.0 --no-restore UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Gtk/UnoSpySnoopDebugger.Skia.Gtk.csproj
-    - name: RestoreFrameBuffer
-      run: dotnet restore -p:TargetFramework=net8.0 -r linux-x64 UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Linux.FrameBuffer/UnoSpySnoopDebugger.Skia.Linux.FrameBuffer.csproj
-    - name: BuildFrameBuffer
-      run: dotnet build -c release -r linux-x64 -p:TargetFramework=net8.0 --no-restore UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Linux.FrameBuffer/UnoSpySnoopDebugger.Skia.Linux.FrameBuffer.csproj
+    # - name: RestoreWorkload
+    #   run: dotnet workload restore UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Gtk/UnoSpySnoopDebugger.Skia.Gtk.csproj
+    - name: Build
+      run: dotnet build -c release -p:TargetFramework=net8.0-desktop -r linux-x64 samples/SampleUnoApp/SampleUnoApp.csproj
 
   BuildOnMac:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v4
     - name: Restore
-      run: dotnet workload restore UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Gtk/UnoSpySnoopDebugger.Skia.Gtk.csproj
-    - name: BuildGtk
-      run: dotnet build UnoSpySnoop/UI/UnoSpySnoopDebugger.Skia.Gtk/UnoSpySnoopDebugger.Skia.Gtk.csproj
+      run: dotnet workload restore samples/SampleUnoApp/SampleUnoApp.csproj
+    - name: Build
+      run: dotnet build -c release -p:TargetFramework=net8.0 -r linux-x64 samples/SampleUnoApp/SampleUnoApp.csproj
