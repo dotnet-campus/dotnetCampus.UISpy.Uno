@@ -11,7 +11,7 @@ dotnetCampus.UISpy.Uno is a tool for inspecting the runtime visual tree of a Ski
 
 ## Why This Tool is Needed
 
-The reason for needing this tool is that on the Skia platform, both WPF and GTK use a Surface to render the interface. This results in the original WPF UI debugging tools, such as SnoopWpf, only being able to see an image and not being able to obtain the correct interface structure. dotnetCampus.UISpy.Uno can effectively assist in interface development debugging on Skia-based desktop platforms, such as Skia.Wpf and Skia.Gtk, enhancing the efficiency of developers' interface development, especially when debugging Skia.Gtk applications on the Linux desktop.
+The reason for needing this tool is that on the Skia platform, both WPF and GTK and X11 uses a Surface to render the interface. This results in the original WPF UI debugging tools, such as SnoopWpf, only being able to see an image and not being able to obtain the correct interface structure. dotnetCampus.UISpy.Uno can effectively assist in interface development debugging on Skia-based desktop platforms, such as Skia.Wpf and Skia.Gtk and Skia.X11 and so on, enhancing the efficiency of developers' interface development, especially when debugging Skia.Gtk or Skia.X11 applications on the Linux desktop.
 
 ## Usage
 
@@ -36,7 +36,7 @@ public sealed partial class MainPage : Page
 
 After completing the above preparation work, you can run the project, press F12 to debug the UI interface.
 
-![](./Docs/Images/SelectDebugProcess.png)
+![](./Docs/Images/SpySampleUnoApp.png)
 
 ## Thanks
 
