@@ -7,4 +7,6 @@ public readonly record struct ElementPropertyProxy(
     string PropertyTypeName)
 {
     public bool IsFailed { get; init; }
+
+    public bool IsNotImplemented { get; init; }
 }
