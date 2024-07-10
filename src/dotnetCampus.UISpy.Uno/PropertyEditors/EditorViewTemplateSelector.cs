@@ -1,6 +1,6 @@
 using dotnetCampus.UISpy.Uno.Tree;
 
-using Uno.Extensions.Reactive.Bindings;
+//using Uno.Extensions.Reactive.Bindings;
 
 namespace dotnetCampus.UISpy.Uno.PropertyEditors;
 
@@ -22,12 +22,12 @@ public class EditorViewTemplateSelector : DataTemplateSelector
     }
 }
 
-internal static class EditorViewExtensions
-{
-    public static TBindable WithModel<TBindable>(this TBindable bindableModel, Action<TBindable> setter)
-        where TBindable : BindableViewModelBase
-    {
-        setter(bindableModel);
-        return bindableModel;
-    }
-}
+//internal static class EditorViewExtensions
+//{
+//    public static TBindable WithModel<TBindable>(this TBindable bindableModel, Action<TBindable> setter)
+//        where TBindable : BindableViewModelBase
+//    {
+//        setter(bindableModel);
+//        return bindableModel;
+//    }
+//}
