@@ -1,3 +1,4 @@
+using Windows.UI;
 using dotnetCampus.UISpy.Uno.Tree;
 
 using Microsoft.UI.Xaml.Media.Imaging;
@@ -47,6 +48,8 @@ public sealed partial class UnoSpyPage : Page
 
         var propertyList = node.GetProperties();
         VisualTreeElementPropertyListView.ItemsSource = propertyList;
+        VisualTreeElementPropertyListView.ContainerContentChanging -= VisualTreeElementPropertyListView_ContainerContentChanging;
+        VisualTreeElementPropertyListView.ContainerContentChanging += VisualTreeElementPropertyListView_ContainerContentChanging;
 
 #if HAS_UNO
         if (CalculatedInfoImage.Source is { } oldImage)
@@ -56,6 +59,19 @@ public sealed partial class UnoSpyPage : Page
 #endif
         var bitmap = await RenderBitmap((UIElement)node.Element);
         CalculatedInfoImage.Source = bitmap;
+    }
+
+    private void VisualTreeElementPropertyListView_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
+    {
+        if (args.ItemIndex % 2 != 0)
+        {
+            args.ItemContainer.Background = new SolidColorBrush(new Color()
+            {
+                R = 0xC1,
+                G = 0xC1,
+                B = 0xC1,
+            });
+        }
     }
 
     private static async ValueTask<ImageSource> RenderBitmap(UIElement element)
