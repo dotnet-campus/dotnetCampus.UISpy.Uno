@@ -44,6 +44,8 @@ public readonly record struct ElementProxy(DependencyObject Element, ImmutableAr
             }
         }
 
+        properties.Sort((a, b) => string.Compare(a.PropertyName, b.PropertyName, StringComparison.Ordinal));
+
         return [.. properties];
     }
 
