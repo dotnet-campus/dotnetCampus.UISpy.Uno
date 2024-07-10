@@ -17,7 +17,7 @@
 
     <Grid RowDefinitions="Auto,*" >
         <StackPanel Orientation="Horizontal">
-            <Button x:Name="ReloadButton" Content="Reload" Click="ReloadButton_OnClick"/>
+            <Button x:Name="ReloadButton" Margin="2,1,2,1" Content="Reload" Click="ReloadButton_OnClick"/>
         </StackPanel>
         <Grid Grid.Row="1" ColumnDefinitions="*,*,*">
 

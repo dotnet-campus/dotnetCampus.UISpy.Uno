@@ -12,6 +12,7 @@ public sealed partial class UnoSpyPage : Page
     public UnoSpyPage()
     {
         InitializeComponent();
+        this.DebugAttachDevTools();
     }
 
     public DependencyObject? TargetRootElement
@@ -57,7 +58,7 @@ public sealed partial class UnoSpyPage : Page
             oldImage.Dispose();
         }
 #endif
-        var bitmap = await RenderBitmap((UIElement)node.Element);
+        var bitmap = await RenderBitmap((UIElement) node.Element);
         CalculatedInfoImage.Source = bitmap;
     }
 
@@ -65,12 +66,18 @@ public sealed partial class UnoSpyPage : Page
     {
         if (args.ItemIndex % 2 != 0)
         {
-            args.ItemContainer.Background = new SolidColorBrush(new Color()
+            var background = new SolidColorBrush(new Color()
             {
-                R = 0xC1,
-                G = 0xC1,
-                B = 0xC1,
+                A = 0xFF,
+                R = 0xD1,
+                G = 0xD1,
+                B = 0xD1,
             });
+            args.ItemContainer.Background = background;
+        }
+        else
+        {
+            args.ItemContainer.Background = new SolidColorBrush(Colors.Transparent);
         }
     }
 
@@ -83,7 +90,7 @@ public sealed partial class UnoSpyPage : Page
 
     private void ReloadButton_OnClick(object sender, RoutedEventArgs args)
     {
-        if(TargetRootElement is {} value)
+        if (TargetRootElement is { } value)
         {
             OnTargetRootElementChanged(value);
         }
