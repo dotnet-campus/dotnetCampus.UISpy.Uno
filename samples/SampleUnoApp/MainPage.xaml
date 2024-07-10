@@ -17,6 +17,7 @@
                    Text="{x:Bind Lang.MainPage.Hello}"
                    HorizontalAlignment="Center" />
         <Button Content="Get focus" />
+        <Button x:Name="ShowUnoSpyWindowButton" Content="Start ShowUnoSpyWindow" Click="Button_OnClick"/>
     </StackPanel>
 
 </Page>
