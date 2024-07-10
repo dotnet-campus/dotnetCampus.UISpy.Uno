@@ -24,7 +24,12 @@ public readonly record struct ElementProxy(DependencyObject Element, ImmutableAr
         {
             try
             {
-                var value = propertyDescriptor.GetValue(Element);
+                object? value;
+                if (propertyDescriptor.Name == "ActualWidth")
+                {
+
+                }
+                value = propertyDescriptor.GetValue(Element);
                 properties.Add(new ElementPropertyProxy(
                     Element,
                     propertyDescriptor.Name,
