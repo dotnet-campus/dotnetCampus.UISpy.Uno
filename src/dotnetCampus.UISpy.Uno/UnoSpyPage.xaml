@@ -12,10 +12,11 @@
 
     <Page.Resources>
         <pe:EditorViewTemplateSelector x:Key="PropertyValueTemplateSelector" />
+        <local:ElementPropertyProxyToBackgroundConverter x:Key="ElementPropertyProxyToBackgroundConverter" />
     </Page.Resources>
 
-    <Grid >
-        <Grid ColumnDefinitions="*,*,*">
+    <Grid RowDefinitions="Auto,*" >
+        <Grid Grid.Row="1" ColumnDefinitions="*,*,*">
 
             <Border Grid.Column="0" BorderThickness="1" BorderBrush="#005A9E" HorizontalAlignment="Right" />
             <Border Grid.Column="1" BorderThickness="1" BorderBrush="#005A9E" HorizontalAlignment="Right" />
@@ -37,7 +38,7 @@
             <ListView x:Name="VisualTreeElementPropertyListView" Grid.Column="1" SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="tree:ElementPropertyProxy">
-                        <Grid RowDefinitions="*,*" ColumnDefinitions="*,3*">
+                        <Grid RowDefinitions="*,*" ColumnDefinitions="*,3*" Background="{Binding Converter={StaticResource ElementPropertyProxyToBackgroundConverter}}">
                             <Border Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"
                                 Height="16" CornerRadius="8" Margin="-4 0" Padding="4 0"
                                 Background="#EAEAEAEA">

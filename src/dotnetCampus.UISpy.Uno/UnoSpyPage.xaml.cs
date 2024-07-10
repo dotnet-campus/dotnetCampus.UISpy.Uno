@@ -65,3 +65,34 @@ public sealed partial class UnoSpyPage : Page
         return rtb;
     }
 }
+
+
+
+public class ElementPropertyProxyToBackgroundConverter : IValueConverter
+{
+    public object? Convert(object value, Type targetType, object parameter, string language)
+    {
+        if (value is ElementPropertyProxy elementPropertyProxy)
+        {
+            var color = Colors.Transparent;
+
+            if (elementPropertyProxy.IsNotImplemented)
+            {
+                color = Colors.LightGray;
+            }
+            else if (elementPropertyProxy.IsFailed)
+            {
+                color = Colors.OrangeRed;
+            }
+
+            return new SolidColorBrush(color);
+        }
+
+        return null;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
+        throw new NotSupportedException();
+    }
+}
