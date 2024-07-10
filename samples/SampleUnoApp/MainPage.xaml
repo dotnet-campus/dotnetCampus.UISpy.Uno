@@ -10,7 +10,7 @@
         <l:LangBindingSource x:Key="LangBindingSource" />
     </Page.Resources>
 
-    <StackPanel utu:SafeArea.Insets="VisibleBounds"
+    <StackPanel x:Name="StackPanel" utu:SafeArea.Insets="VisibleBounds"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
         <TextBlock AutomationProperties.AutomationId="HelloTextBlock"

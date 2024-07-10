@@ -64,6 +64,14 @@ public sealed partial class UnoSpyPage : Page
         await rtb.RenderAsync(element);
         return rtb;
     }
+
+    private void ReloadButton_OnClick(object sender, RoutedEventArgs args)
+    {
+        if(TargetRootElement is {} value)
+        {
+            OnTargetRootElementChanged(value);
+        }
+    }
 }
 
 

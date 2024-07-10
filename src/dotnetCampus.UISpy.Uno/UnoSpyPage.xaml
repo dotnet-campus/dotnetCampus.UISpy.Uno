@@ -16,6 +16,9 @@
     </Page.Resources>
 
     <Grid RowDefinitions="Auto,*" >
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="ReloadButton" Content="Reload" Click="ReloadButton_OnClick"/>
+        </StackPanel>
         <Grid Grid.Row="1" ColumnDefinitions="*,*,*">
 
             <Border Grid.Column="0" BorderThickness="1" BorderBrush="#005A9E" HorizontalAlignment="Right" />
