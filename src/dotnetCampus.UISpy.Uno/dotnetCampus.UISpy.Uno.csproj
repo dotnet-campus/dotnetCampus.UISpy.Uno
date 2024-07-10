@@ -3,12 +3,10 @@
   <PropertyGroup>
     <TargetFrameworks>
       net8.0;
-      net8.0-desktop;
       net8.0-windows10.0.19041;
     </TargetFrameworks>
     <DCUseGeneratedLogger>true</DCUseGeneratedLogger>
     <IsPackable>true</IsPackable>
-    <UnoSingleProject>true</UnoSingleProject>
   </PropertyGroup>
 
   <!-- UNO -->
@@ -18,7 +16,10 @@
       https://aka.platform.uno/singleproject-features
     -->
     <UnoFeatures>
-      <!--CSharpMarkup;-->
+      CSharpMarkup;
+      MVUX;
+      Skia;
+      Toolkit;
     </UnoFeatures>
   </PropertyGroup>
 
