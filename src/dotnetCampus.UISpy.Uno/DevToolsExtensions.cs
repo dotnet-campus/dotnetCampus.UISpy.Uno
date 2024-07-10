@@ -28,7 +28,13 @@ public static class DevToolsExtensions
             return;
         }
 
-        new UnoSpyWindow(root).Activate();
+        root.ShowUnoSpyWindow();
+    }
+
+    public static void ShowUnoSpyWindow(this UIElement element)
+    {
+        var unoSpyWindow = new UnoSpyWindow(element);
+        unoSpyWindow.Activate();
     }
 }
 
