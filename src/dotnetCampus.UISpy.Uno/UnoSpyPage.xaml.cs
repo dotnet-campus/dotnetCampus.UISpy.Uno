@@ -49,6 +49,7 @@ public sealed partial class UnoSpyPage : Page
 
         var propertyList = node.GetProperties();
         VisualTreeElementPropertyListView.ItemsSource = propertyList;
+
         VisualTreeElementPropertyListView.ContainerContentChanging -= VisualTreeElementPropertyListView_ContainerContentChanging;
         VisualTreeElementPropertyListView.ContainerContentChanging += VisualTreeElementPropertyListView_ContainerContentChanging;
 
@@ -62,16 +63,21 @@ public sealed partial class UnoSpyPage : Page
         CalculatedInfoImage.Source = bitmap;
     }
 
+    /// <summary>
+    /// 配置间隔行颜色，实现 AlternatingItemTemplate 效果
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
     private void VisualTreeElementPropertyListView_ContainerContentChanging(ListViewBase sender, ContainerContentChangingEventArgs args)
     {
         if (args.ItemIndex % 2 != 0)
         {
             var background = new SolidColorBrush(new Color()
             {
-                A = 0xFF,
-                R = 0xD1,
-                G = 0xD1,
-                B = 0xD1,
+                A = 0xDF,
+                R = 0xEE,
+                G = 0xEE,
+                B = 0xEE,
             });
             args.ItemContainer.Background = background;
         }
