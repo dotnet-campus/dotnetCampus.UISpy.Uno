@@ -1,6 +1,7 @@
 using System.Collections.Immutable;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace dotnetCampus.UISpy.Uno.Tree;
 
@@ -31,18 +32,32 @@ public readonly record struct ElementProxy(DependencyObject Element, ImmutableAr
                     value,
                     propertyDescriptor.PropertyType.Name));
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
+                object value = exception;
+                var isNotImplemented = false;
+                if (exception is TargetInvocationException targetInvocationException)
+                {
+                    if (targetInvocationException.InnerException is NotImplementedException)
+                    {
+                        isNotImplemented = true;
+                        value = "NotImplemented";
+                    }
+                }
+
                 properties.Add(new ElementPropertyProxy(
                     Element,
                     propertyDescriptor.Name,
-                    ex,
+                    value,
                     propertyDescriptor.PropertyType.Name)
                 {
                     IsFailed = true,
+                    IsNotImplemented = isNotImplemented
                 });
             }
         }
+
+        properties.Sort((a, b) => string.Compare(a.PropertyName, b.PropertyName, StringComparison.Ordinal));
 
         return [.. properties];
     }

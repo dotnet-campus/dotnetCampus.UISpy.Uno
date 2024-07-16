@@ -12,4 +12,14 @@ public sealed partial class MainPage : Page
     }
 
     public dotnetCampus.SampleUnoApp.Localizations.Localizations.ILocalized_Root Lang => dotnetCampus.SampleUnoApp.Localizations.Lang.Current;
+
+    public void Button_OnClick(object sender, RoutedEventArgs args)
+    {
+        this.ShowUnoSpyWindow();
+
+        StackPanel.Children.Add(new TextBlock()
+        {
+            Text = "Test"
+        });
+    }
 }
