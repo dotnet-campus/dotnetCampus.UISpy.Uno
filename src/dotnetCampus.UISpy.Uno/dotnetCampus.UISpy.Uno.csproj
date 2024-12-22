@@ -1,30 +1,18 @@
 <Project Sdk="Uno.Sdk">
-
   <PropertyGroup>
-    <TargetFrameworks>
-      net8.0-windows10.0.19041;
-      net8.0;
-    </TargetFrameworks>
-    <DCUseGeneratedLogger>true</DCUseGeneratedLogger>
+    <TargetFrameworks>net8.0-desktop</TargetFrameworks>
+
     <IsPackable>true</IsPackable>
-  </PropertyGroup>
 
-  <!-- UNO -->
-  <PropertyGroup>
     <!--
-      UnoFeatures 让您可以快速添加和管理基于您想要使用的功能的隐式包引用。
+      UnoFeatures let's you quickly add and manage implicit package references based on the features you want to use.
       https://aka.platform.uno/singleproject-features
     -->
     <UnoFeatures>
-      CSharpMarkup;
-      MVUX;
-      Skia;
-      Toolkit;
+        CSharpMarkup;
+        MVUX;
+        Toolkit;
     </UnoFeatures>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Uno.WinUI.DevServer" />
-  </ItemGroup>
 
 </Project>

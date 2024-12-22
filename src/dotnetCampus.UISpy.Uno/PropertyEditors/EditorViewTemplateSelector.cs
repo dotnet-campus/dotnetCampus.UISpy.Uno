@@ -1,14 +1,19 @@
-using dotnetCampus.UISpy.Uno.Tree;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+using DotNetCampus.UISpy.Uno.Tree;
 using Uno.Extensions.Reactive.Bindings;
 
-namespace dotnetCampus.UISpy.Uno.PropertyEditors;
+namespace DotNetCampus.UISpy.Uno.PropertyEditors;
 
 public class EditorViewTemplateSelector : DataTemplateSelector
 {
     protected override DataTemplate SelectTemplateCore(object item)
     {
-        var proxy = (ElementPropertyProxy)item;
+        var proxy = (ElementPropertyProxy) item;
         UIElement view = proxy.PropertyTypeName switch
         {
             nameof(Boolean) => new BooleanEditorView(proxy.Value is true),
@@ -31,3 +36,4 @@ internal static class EditorViewExtensions
         return bindableModel;
     }
 }
+

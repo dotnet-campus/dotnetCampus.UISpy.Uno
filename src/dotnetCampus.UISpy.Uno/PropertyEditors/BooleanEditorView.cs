@@ -1,11 +1,17 @@
-namespace dotnetCampus.UISpy.Uno.PropertyEditors;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DotNetCampus.UISpy.Uno.PropertyEditors;
 
 public class BooleanEditorView : UserControl
 {
     public BooleanEditorView(bool initialValue)
     {
         this.DataContext(
-            new BindableBooleanEditorModel().WithModel(x => x.Model.Value = initialValue),
+            new BooleanEditorViewModel().WithModel(x => x.Model.Value = initialValue),
             (v, vm) => v
                 .Content(new ComboBox()
                     .Items(

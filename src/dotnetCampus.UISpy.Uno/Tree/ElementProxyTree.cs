@@ -1,4 +1,10 @@
-namespace dotnetCampus.UISpy.Uno.Tree;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DotNetCampus.UISpy.Uno.Tree;
 
 public class ElementProxyTree(ElementProxy root)
 {

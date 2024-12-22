@@ -1,12 +1,12 @@
 ﻿<Page
-    x:Class="dotnetCampus.UISpy.Uno.UnoSpyPage"
+    x:Class="DotNetCampus.UISpy.Uno.UnoSpyPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:dotnetCampus.UISpy.Uno"
+    xmlns:local="using:DotNetCampus.UISpy.Uno"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:pe="using:dotnetCampus.UISpy.Uno.PropertyEditors"
-    xmlns:tree="using:dotnetCampus.UISpy.Uno.Tree"
+    xmlns:pe="using:DotNetCampus.UISpy.Uno.PropertyEditors"
+    xmlns:tree="using:DotNetCampus.UISpy.Uno.Tree"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -15,7 +15,7 @@
         <local:ElementPropertyProxyToBackgroundConverter x:Key="ElementPropertyProxyToBackgroundConverter" />
     </Page.Resources>
 
-    <Grid RowDefinitions="Auto,*" >
+    <Grid RowDefinitions="Auto,*">
         <StackPanel Orientation="Horizontal">
             <Button x:Name="ReloadButton" Margin="2,1,2,1" Content="Reload" Click="ReloadButton_OnClick"/>
         </StackPanel>
@@ -29,9 +29,9 @@
                     <DataTemplate x:DataType="tree:ElementProxy">
                         <TreeViewItem ItemsSource="{x:Bind Children}">
                             <TextBlock>
-                            <Run Text="{x:Bind TypeName}" />
-                            <Run Text="  " />
-                            <Run Text="{x:Bind Name}" Foreground="Gray" />
+                                <Run Text="{x:Bind TypeName}" />
+                                <Run Text="  " />
+                                <Run Text="{x:Bind Name}" Foreground="Gray" />
                             </TextBlock>
                         </TreeViewItem>
                     </DataTemplate>
@@ -43,14 +43,14 @@
                     <DataTemplate x:DataType="tree:ElementPropertyProxy">
                         <Grid RowDefinitions="*,*" ColumnDefinitions="*,3*" Background="{Binding Converter={StaticResource ElementPropertyProxyToBackgroundConverter}}">
                             <Border Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"
-                                Height="16" CornerRadius="8" Margin="-4 0" Padding="4 0"
-                                Background="#EAEAEAEA">
+                              Height="16" CornerRadius="8" Margin="-4 0" Padding="4 0"
+                              Background="#EAEAEAEA">
                                 <TextBlock FontSize="10" Foreground="#666666" Text="{x:Bind PropertyTypeName}" />
                             </Border>
                             <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Bind PropertyName}" />
                             <!-- 选择器似乎写错了 -->
                             <!--<ContentPresenter Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Content="{x:Bind}"
-                                          ContentTemplateSelector="{StaticResource PropertyValueTemplateSelector}" />-->
+                                        ContentTemplateSelector="{StaticResource PropertyValueTemplateSelector}" />-->
                             <TextBlock Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Text="{Binding Value}" />
                         </Grid>
                     </DataTemplate>

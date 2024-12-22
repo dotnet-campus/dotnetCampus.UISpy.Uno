@@ -1,12 +1,16 @@
-using System.Collections.Immutable;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace dotnetCampus.UISpy.Uno.Tree;
+namespace DotNetCampus.UISpy.Uno.Tree;
 
 [DebuggerDisplay("{TypeName,nq} ({Name,nq}) [{Children.Length,nq}]")]
-public readonly record struct ElementProxy(DependencyObject Element, ImmutableArray<ElementProxy> Children)
+public record ElementProxy(DependencyObject Element, ImmutableArray<ElementProxy> Children)
 {
     public DependencyObject Element { get; init; } = Element;
 

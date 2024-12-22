@@ -1,9 +1,10 @@
+using Microsoft.UI.Xaml.Input;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using Windows.System;
-using Microsoft.UI.Xaml.Input;
 
-namespace dotnetCampus.UISpy.Uno;
+using Windows.System;
+
+namespace DotNetCampus.UISpy.Uno;
 
 public static class DevToolsExtensions
 {
@@ -22,7 +23,7 @@ public static class DevToolsExtensions
 
     private static void RootElement_KeyDown(object sender, KeyRoutedEventArgs e)
     {
-        var root = (UIElement)sender;
+        var root = (UIElement) sender;
         if (e.Key is not VirtualKey.F12)
         {
             return;

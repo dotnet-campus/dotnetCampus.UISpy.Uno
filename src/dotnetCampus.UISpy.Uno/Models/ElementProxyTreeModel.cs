@@ -1,6 +1,12 @@
-using dotnetCampus.UISpy.Uno.Tree;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace dotnetCampus.UISpy.Uno.Models;
+using DotNetCampus.UISpy.Uno.Tree;
+
+namespace DotNetCampus.UISpy.Uno.Models;
 
 public partial record ElementProxyTreeModel
 {
@@ -14,6 +20,7 @@ public partial record ElementProxyTreeModel
 
     private ValueTask<ElementProxyTree> UpdateVisualTree(CancellationToken ct)
     {
-        return ValueTask.FromResult<ElementProxyTree>(default);
+        return ValueTask.FromResult<ElementProxyTree>(default(ElementProxyTree));
     }
 }
+

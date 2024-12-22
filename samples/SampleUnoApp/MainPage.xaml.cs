@@ -1,17 +1,13 @@
-using dotnetCampus.UISpy.Uno;
+using DotNetCampus.UISpy.Uno;
 
-namespace dotnetCampus.SampleUnoApp;
+namespace SampleUnoApp;
 
 public sealed partial class MainPage : Page
 {
     public MainPage()
     {
-        InitializeComponent();
-
-        this.AttachDevTools();
+        this.InitializeComponent();
     }
-
-    public dotnetCampus.SampleUnoApp.Localizations.Localizations.ILocalized_Root Lang => dotnetCampus.SampleUnoApp.Localizations.Lang.Current;
 
     public void Button_OnClick(object sender, RoutedEventArgs args)
     {

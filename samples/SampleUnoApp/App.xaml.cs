@@ -1,9 +1,8 @@
-using dotnetCampus.SampleUnoApp.Localizations;
-using dotnetCampus.SampleUnoApp.Startup;
-
+using System;
+using Microsoft.Extensions.Logging;
 using Uno.Resizetizer;
 
-namespace dotnetCampus.SampleUnoApp;
+namespace SampleUnoApp;
 
 public partial class App : Application
 {
@@ -13,7 +12,6 @@ public partial class App : Application
     /// </summary>
     public App()
     {
-        this.SetupApp();
         this.InitializeComponent();
     }
 
@@ -21,16 +19,9 @@ public partial class App : Application
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        MainWindow = new Window
-        {
-            AppWindow =
-            {
-                Title = Lang.Current.ApplicationName,
-            }
-        };
-        this.AfterLaunched();
+        MainWindow = new Window();
 #if DEBUG
-        MainWindow.EnableHotReload();
+        MainWindow.UseStudio();
 #endif
 
 
@@ -58,7 +49,6 @@ public partial class App : Application
         MainWindow.SetWindowIcon();
         // Ensure the current window is active
         MainWindow.Activate();
-        this.AfterMainWindowShown();
     }
 
     /// <summary>

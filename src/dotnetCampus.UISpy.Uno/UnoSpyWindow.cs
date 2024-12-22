@@ -1,4 +1,14 @@
-namespace dotnetCampus.UISpy.Uno;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.UI.Xaml.Input;
+
+using Windows.System;
+
+namespace DotNetCampus.UISpy.Uno;
 
 internal class UnoSpyWindow : Window
 {
@@ -8,8 +18,8 @@ internal class UnoSpyWindow : Window
         {
             TargetRootElement = rootElement,
         };
-#if DEBUG
-        this.EnableHotReload();
-#endif
+//#if DEBUG
+//        this.EnableHotReload();
+//#endif
     }
 }
