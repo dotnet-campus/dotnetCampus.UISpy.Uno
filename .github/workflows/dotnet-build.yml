@@ -33,4 +33,4 @@ jobs:
     - name: Restore
       run: dotnet workload restore samples/SampleUnoApp/SampleUnoApp.csproj
     - name: Build
-      run: dotnet build -c release -p:TargetFramework=net8.0 -r linux-x64 samples/SampleUnoApp/SampleUnoApp.csproj
+      run: dotnet build -c release -p:TargetFramework=net8.0-desktop -r linux-x64 samples/SampleUnoApp/SampleUnoApp.csproj

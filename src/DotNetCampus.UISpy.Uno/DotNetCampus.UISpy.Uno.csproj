@@ -1,0 +1,18 @@
+<Project Sdk="Uno.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-desktop</TargetFrameworks>
+
+    <IsPackable>true</IsPackable>
+
+    <!--
+      UnoFeatures let's you quickly add and manage implicit package references based on the features you want to use.
+      https://aka.platform.uno/singleproject-features
+    -->
+    <UnoFeatures>
+        CSharpMarkup;
+        MVUX;
+        Toolkit;
+    </UnoFeatures>
+  </PropertyGroup>
+
+</Project>
